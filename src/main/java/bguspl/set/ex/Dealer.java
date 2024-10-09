@@ -375,7 +375,6 @@ public class Dealer implements Runnable {
     // Added
     public void pushToTestSet(Triple<Integer, int[], int[]> triple){
         setQ.put(triple);
-        //dealerThread.interrupt(); -----------------------------------CHECK IF CAN DELETE LINE------------------------------------------------
         synchronized(sleepLock) {sleepLock.notifyAll();}
     }
 
