@@ -43,7 +43,6 @@ public class Dealer implements Runnable {
 
     // Added
     protected setsQueue setQ;
-    // private Thread dealerThread; -----------------------------------CHECK IF CAN DELETE LINE------------------------------------------------
     private Thread[] playersThreads;
     protected Object[] locks;
     private int[] slotsOrder;
@@ -79,9 +78,6 @@ public class Dealer implements Runnable {
      */
     @Override
     public void run() {
-
-        // Added
-        // dealerThread = Thread.currentThread(); -----------------------------------CHECK IF CAN DELETE LINE------------------------------------------------
 
         env.logger.info("thread " + Thread.currentThread().getName() + " starting.");
 
