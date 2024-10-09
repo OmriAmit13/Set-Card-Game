@@ -29,11 +29,6 @@ public class Player implements Runnable {
     public final int id;
 
     /**
-     * The thread representing the current player.
-     */
-    private Thread playerThread;
-
-    /**
      * The thread of the AI (computer) player (an additional thread used to generate key presses).
      */
     private Thread aiThread;
@@ -94,7 +89,6 @@ public class Player implements Runnable {
      */
     @Override
     public void run() {
-        playerThread = Thread.currentThread();
         env.logger.info("thread " + Thread.currentThread().getName() + " starting.");
         if (!human) createArtificialIntelligence();
 
@@ -132,7 +126,7 @@ public class Player implements Runnable {
                     if (set != null){
                         int[] setCards = set[0];
                         int[] setSlots = set[1];
-                        Triple<Integer, int[], int[]> triple = new Triple(id, setCards, setSlots);
+                        Triple<Integer, int[], int[]> triple = new Triple<>(id, setCards, setSlots);
                         dealer.pushToTestSet(triple);
 
                         // wait until dealer responds
@@ -211,7 +205,6 @@ public class Player implements Runnable {
      * @post - the player's score is updated in the ui.
      */
     public void point() { 
-        int ignored = table.countCards(); // this part is just for demonstration in the unit tests
         env.ui.setScore(id, ++score);
 
         long endTime = System.currentTimeMillis() + env.config.pointFreezeMillis;

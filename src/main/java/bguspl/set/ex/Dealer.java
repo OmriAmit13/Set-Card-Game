@@ -43,7 +43,7 @@ public class Dealer implements Runnable {
 
     // Added
     protected setsQueue setQ;
-    private Thread dealerThread;
+    // private Thread dealerThread; -----------------------------------CHECK IF CAN DELETE LINE------------------------------------------------
     private Thread[] playersThreads;
     protected Object[] locks;
     private int[] slotsOrder;
@@ -81,7 +81,7 @@ public class Dealer implements Runnable {
     public void run() {
 
         // Added
-        dealerThread = Thread.currentThread();
+        // dealerThread = Thread.currentThread(); -----------------------------------CHECK IF CAN DELETE LINE------------------------------------------------
 
         env.logger.info("thread " + Thread.currentThread().getName() + " starting.");
 
@@ -379,7 +379,7 @@ public class Dealer implements Runnable {
     // Added
     public void pushToTestSet(Triple<Integer, int[], int[]> triple){
         setQ.put(triple);
-        //dealerThread.interrupt();
+        //dealerThread.interrupt(); -----------------------------------CHECK IF CAN DELETE LINE------------------------------------------------
         synchronized(sleepLock) {sleepLock.notifyAll();}
     }
 
